@@ -1,4 +1,13 @@
 /* Hoja de diseño - CSS */
+body {
+    padding-top: 80px;
+}
+
+#header {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
 #active{
     background-color: black;
 }
