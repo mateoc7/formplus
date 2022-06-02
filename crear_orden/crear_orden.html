@@ -40,44 +40,44 @@
 
         <p class="h1">Orden #9999</p>
         
-        <form class="row g-3">
+        <div class="row g-3">
             <div class="col-md-6">
                 <label class="form-label">Ingresa una breve descripción de la orden</label>
-                <input type="text" class="form-control" placeholder="Descripción">
+                <input type="text" class="form-control" placeholder="Descripción" v-model="inputDesc">
             </div>
             <div class="col-md-6">
                 <label class="form-label">Nombre del cliente</label>
-                <input type="text" class="form-control" placeholder="Nombres y apellidos">
+                <input type="text" class="form-control" placeholder="Nombres y apellidos" v-model="inputName">
             </div>
             <div class="col-6">
                 <label class="form-label">Prioridad</label>
-                <select class="form-select">
+                <select class="form-select" v-model="inputPriority">
                     <option v-for="element in prioridad">{{element}}</option>
                 </select>
             </div>
             <div class="col-6">
                 <label class="form-label">Teléfono del cliente</label>
-                <input type="tel" class="form-control" placeholder="+57 Colombia">
+                <input type="tel" class="form-control" placeholder="+57 Colombia" v-model="inputTel">
             </div>
             <div class="col-md-6">
                 <label class="form-label">Tipo de pago</label>
-                <select class="form-select">
+                <select class="form-select" v-model="inputTypePay">
                     <option v-for="type in tipoPago">{{type}}</option>
                 </select>
             </div>
             <div class="col-md-6">
                 <label for="inputZip" class="form-label">Dirección</label>
-                <input type="text" class="form-control" placeholder="Kra, Calle, Av NN #NN - NN">
+                <input type="text" class="form-control" placeholder="Kra, Calle, Av NN #NN - NN" v-model="inputDir">
             </div>
             <div class="col-md-6">
                 <label class="form-label">Ciudad</label>
-                <select class="form-select">
+                <select class="form-select" v-model="inputCity">
                     <option v-for="city in ciudades">{{city}}</option>
                 </select>
             </div>
             <div class="col-md-6">
                 <label class="form-label">Adicional</label>
-                <input type="text" class="form-control" placeholder="Apto, Residencia, Conjunto, Esquina, etc...">
+                <input type="text" class="form-control" placeholder="Apto, Residencia, Conjunto, Esquina, etc..." v-model="inputRef">
             </div>
             <div class="col-12">
                 <div class="form-check">
@@ -88,9 +88,9 @@
                 </div>
             </div>
             <div class="col-12">
-                <button type="submit" class="btn btn-dark">Crear</button>
+                <button type="submit" class="btn btn-dark" @click="validateFields">Crear</button>
             </div>
-        </form>
+        </div>
 
         <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
             <div class="col-md-4 d-flex align-items-center">
