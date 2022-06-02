@@ -11,6 +11,7 @@ var app = new Vue({
         inputRef: "",
         order: [],
         prioridad: ["Seleccione una", "Alta", "Media", "Baja"],
-        tipoPago: ["Contraentregra", "Tarjeta de Crédito", "PSE"]
+        tipoPago: ["Seleccione uno", "Contraentregra", "Tarjeta de Crédito", "PSE"],
+        ciudades: ["Seleccione una", "Armenia", "Bogotá", "Bucaramanga", "Barranquilla", "Bello", "Cúcuta", "Cali", "Cartagena", "Manizales", "Medellín", "Ocaña", "Pereira", "Santa Marta"]
     }
 })

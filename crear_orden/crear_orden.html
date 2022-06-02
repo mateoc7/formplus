@@ -34,7 +34,7 @@
         </ul>
     </header>
 
-    <div class="container">
+    <div class="container" id="gestionOrder">
 
         <p class="lead">Agrega los detalles de la orden. Recuerda llenar los campos obligatorios para un registro exitoso.</p>
 
@@ -52,10 +52,7 @@
             <div class="col-6">
                 <label class="form-label">Prioridad</label>
                 <select class="form-select">
-                    <option disabled selected>Seleccione una</option>
-                    <option value="1">Alta</option>
-                    <option value="2">Media</option>
-                    <option value="3">Baja</option>
+                    <option v-for="element in prioridad">{{element}}</option>
                 </select>
             </div>
             <div class="col-6">
@@ -65,10 +62,7 @@
             <div class="col-md-6">
                 <label class="form-label">Tipo de pago</label>
                 <select class="form-select">
-                    <option disabled selected>Seleccione uno</option>
-                    <option value="1">Contraentrega</option>
-                    <option value="2">Tarjeta de crédito</option>
-                    <option value="3">PSE</option>
+                    <option v-for="type in tipoPago">{{type}}</option>
                 </select>
             </div>
             <div class="col-md-6">
@@ -78,20 +72,7 @@
             <div class="col-md-6">
                 <label class="form-label">Ciudad</label>
                 <select class="form-select">
-                    <option disabled selected>Seleccione una</option>
-                    <option value="1">Armenia</option>
-                    <option value="2">Bogotá</option>
-                    <option value="3">Bucaramanga</option>
-                    <option value="4">Barranquilla</option>
-                    <option value="5">Bello</option>
-                    <option value="6">Cúcuta</option>
-                    <option value="7">Cali</option>
-                    <option value="8">Cartagena</option>
-                    <option value="9">Manizales</option>
-                    <option value="10">Medellín</option>
-                    <option value="11">Ocaña</option>
-                    <option value="12">Pereira</option>
-                    <option value="13">Santa Marta</option>
+                    <option v-for="city in ciudades">{{city}}</option>
                 </select>
             </div>
             <div class="col-md-6">
@@ -126,6 +107,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="../js/Gestion.js"></script>
 </body>
 
 </html>
