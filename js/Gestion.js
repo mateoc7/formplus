@@ -20,7 +20,6 @@ var app = new Vue({
                 if (this.prioridad.indexOf(this.inputPriority) != 0) {
                     if (this.inputTel && this.tipoPago.indexOf(this.inputTypePay) != 0) {
                         if (this.inputDir && this.ciudades.indexOf(this.inputCity) != 0) {
-                            this.clearFields();
                             return true;
                         }
                     }
@@ -37,6 +36,36 @@ var app = new Vue({
             this.inputDir = "";
             this.inputCity = "Seleccione una";
             this.inputRef = "";
+        },
+        agregarOrden: function() {
+            if (this.validateFields()) {
+                this.order.push({
+                    description: this.inputDesc,
+                    name: this.inputName,
+                    priority: this.inputPriority,
+                    tel: this.inputTel,
+                    typePay: this.inputTypePay,
+                    direction: this.inputDir,
+                    city: this.inputCity,
+                    ref: this.inputRef
+                });
+                this.clearFields();
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'La orden se registró con éxito',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            } else {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Complete los campos',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
         }
     }
 })
