@@ -1,6 +1,7 @@
 var app = new Vue({
     el: "#gestionOrder",
     data: {
+        flag: true,
         contador: 1,
         inputDesc: "",
         inputName: "",
@@ -10,7 +11,28 @@ var app = new Vue({
         inputDir: "",
         inputCity: "Seleccione una",
         inputRef: "",
-        order: [],
+        order: [
+            {
+                description: "Dos cervezas Club Colombia",
+                name: "Juan Perez",
+                priority: "Alta",
+                tel: "11223344",
+                typePay: "Efectivo",
+                direction: "N/A",
+                city: "Ocaña",
+                ref: "N/A"
+            },
+            {
+                description: "Tres barriles de pintura café Pintuco",
+                name: "Lola Báez",
+                priority: "Media",
+                tel: "99999999",
+                typePay: "PSE",
+                direction: "Cra 21B #12-45",
+                city: "Bogotá",
+                ref: "Oficina"  
+            }
+        ],
         prioridad: ["Seleccione una", "Alta", "Media", "Baja"],
         tipoPago: ["Seleccione uno", "Contraentregra", "Tarjeta de Crédito", "PSE"],
         ciudades: ["Seleccione una", "Armenia", "Bogotá", "Bucaramanga", "Barranquilla", "Bello", "Cúcuta", "Cali", "Cartagena", "Manizales", "Medellín", "Ocaña", "Pereira", "Santa Marta"]
@@ -28,7 +50,7 @@ var app = new Vue({
             }
             return false;
         },
-        clearFields: function() {
+        clearFields: function () {
             this.inputDesc = "";
             this.inputName = "";
             this.inputPriority = "Seleccione una";
@@ -38,7 +60,7 @@ var app = new Vue({
             this.inputCity = "Seleccione una";
             this.inputRef = "";
         },
-        agregarOrden: function() {
+        agregarOrden: function () {
             if (this.validateFields()) {
                 this.order.push({
                     description: this.inputDesc,
@@ -68,6 +90,30 @@ var app = new Vue({
                     timer: 1500
                 });
             }
+        },
+        entregarOrden: function () {
+            this.flag = false;
+        },
+        cancelarOrden: function (i) {
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "¡No podrás revertir esto!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '¡Sí, eliminar!',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.order.splice(i, 1);
+                    Swal.fire(
+                        '¡Eliminado!',
+                        'La orden ha sido eliminada.',
+                        'success'
+                    )
+                }
+            });
         }
     }
 })

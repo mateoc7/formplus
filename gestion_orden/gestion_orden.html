@@ -34,7 +34,7 @@
         </ul>
     </header>
 
-    <div class="container">
+    <div class="container" id="gestionOrder">
 
         <div class="table-responsive">
         
@@ -49,61 +49,21 @@
                         <th scope="col">Información del Cliente</th>
                         <th scope="col">Teléfono</th>
                         <th scope="col">Prioridad</th>
-                        <th scope="col">Total</th>
                         <th scope="col" colspan="2">Estado</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>1 Bebida fría de café 250ml</td>
-                        <td>Otto B</td>
-                        <td>(+57) 320 299 87 36</td>
-                        <td>Media</td>
-                        <td>$ 9.999</td>
-                        <td>Pendiente</td>
+                    <tr v-for="(item, index) in order" :key="index">
+                        <th scope="row">{{index+1}}</th>
+                        <td>{{item.description}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.tel}}</td>
+                        <td>{{item.priority}}</td>
+                        <td v-if="flag">Pendiente</td>
+                        <td v-else>Completado</td>
                         <td>
-                            <button type="button" class="btn btn-success">Entregar</button>
-                            <button type="button" class="btn btn-danger">Cancelar</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>2 Cervezas Corona 750ml</td>
-                        <td>Mary L</td>
-                        <td>(+57) 322 285 55 55</td>
-                        <td>Alta</td>
-                        <td>$ 7.779</td>
-                        <td>Pendiente</td>
-                        <td>
-                            <button type="button" class="btn btn-success">Entregar</button>
-                            <button type="button" class="btn btn-danger">Cancelar</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>5 Cervezas Corona 150ml</td>
-                        <td>Juan H</td>
-                        <td>(+57) 310 251 00 00</td>
-                        <td>Media</td>
-                        <td>$ 15.799</td>
-                        <td>Pendiente</td>
-                        <td>
-                            <button type="button" class="btn btn-success">Entregar</button>
-                            <button type="button" class="btn btn-danger">Cancelar</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>1 Maní OneTwo 20gr</td>
-                        <td>Johan T</td>
-                        <td>(+57) 310 000 00 00</td>
-                        <td>Baja</td>
-                        <td>$ 1.099</td>
-                        <td>Cancelado</td>
-                        <td>
-                            <button type="button" class="btn btn-success" disabled>Entregar</button>
-                            <button type="button" class="btn btn-danger" disabled>Cancelar</button>
+                            <button type="button" @click="entregarOrden" class="btn btn-success">Entregar</button>
+                            <button type="button" @click="cancelarOrden(index)" class="btn btn-danger">Cancelar</button>
                         </td>
                     </tr>
                 </tbody>
@@ -126,6 +86,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../js/Gestion.js"></script>
 </body>
 
 </html>
