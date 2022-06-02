@@ -1,6 +1,7 @@
 var app = new Vue({
     el: "#gestionOrder",
     data: {
+        contador: 1,
         inputDesc: "",
         inputName: "",
         inputPriority: "Seleccione una",
@@ -57,6 +58,7 @@ var app = new Vue({
                     showConfirmButton: false,
                     timer: 1500
                 });
+                this.contador++;
             } else {
                 Swal.fire({
                     position: 'center',
