@@ -2,7 +2,7 @@ var app = new Vue({
     el: "#gestionOrder",
     data: {
         flag: true,
-        contador: 0,
+        contador: 1,
         inputDesc: "",
         inputName: "",
         inputPriority: "Seleccione una",
@@ -11,28 +11,7 @@ var app = new Vue({
         inputDir: "",
         inputCity: "Seleccione una",
         inputRef: "",
-        order: [
-            {
-                description: "Dos cervezas Club Colombia",
-                name: "Juan Perez",
-                priority: "Alta",
-                tel: "11223344",
-                typePay: "Efectivo",
-                direction: "N/A",
-                city: "Ocaña",
-                ref: "N/A"
-            },
-            {
-                description: "Tres barriles de pintura café Pintuco",
-                name: "Lola Báez",
-                priority: "Media",
-                tel: "99999999",
-                typePay: "PSE",
-                direction: "Cra 21B #12-45",
-                city: "Bogotá",
-                ref: "Oficina"  
-            }
-        ],
+        order: [],
         prioridad: ["Seleccione una", "Alta", "Media", "Baja"],
         tipoPago: ["Seleccione uno", "Contraentregra", "Tarjeta de Crédito", "PSE"],
         ciudades: ["Seleccione una", "Armenia", "Bogotá", "Bucaramanga", "Barranquilla", "Bello", "Cúcuta", "Cali", "Cartagena", "Manizales", "Medellín", "Ocaña", "Pereira", "Santa Marta"]
@@ -80,7 +59,7 @@ var app = new Vue({
                     showConfirmButton: false,
                     timer: 1500
                 });
-                // this.contador++;
+                this.contador++;
                 this.flag = true;
             } else {
                 Swal.fire({
@@ -100,16 +79,16 @@ var app = new Vue({
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: '¡Sí, eliminar!',
+                confirmButtonText: '¡Sí, cancelar!',
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    this.order.splice(i, 1);
                     Swal.fire(
-                        '¡Eliminado!',
-                        'La orden ha sido eliminada.',
+                        'Cancelado!',
+                        'La orden ha sido cancelada.',
                         'success'
                     )
+                    this.order.splice(i, 1);
                 }
             });
         },
@@ -117,7 +96,31 @@ var app = new Vue({
             this.flag = false;
         },
         btnCancelRegistro: function() {
-            this.flag = true;
+            if (this.validateFields()) {
+                Swal.fire({
+                    title: '¿Estás seguro?',
+                    text: "¡No podrás revertir esto!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '¡Sí, cancelar!',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire(
+                            'Cancelado!',
+                            'No se creó la orden.',
+                            'success'
+                        )
+                        this.flag = true;
+                        this.clearFields();
+                    }
+                });
+                
+            } else {
+                this.flag = true;
+            }
         }
     }
 })
