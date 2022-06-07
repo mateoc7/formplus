@@ -2,7 +2,7 @@ var app = new Vue({
     el: "#gestionOrder",
     data: {
         flag: true,
-        contador: 1,
+        contador: 0,
         inputDesc: "",
         inputName: "",
         inputPriority: "Seleccione una",
@@ -80,7 +80,8 @@ var app = new Vue({
                     showConfirmButton: false,
                     timer: 1500
                 });
-                this.contador++;
+                // this.contador++;
+                this.flag = true;
             } else {
                 Swal.fire({
                     position: 'center',
@@ -90,9 +91,6 @@ var app = new Vue({
                     timer: 1500
                 });
             }
-        },
-        entregarOrden: function () {
-            this.flag = false;
         },
         cancelarOrden: function (i) {
             Swal.fire({
@@ -114,6 +112,12 @@ var app = new Vue({
                     )
                 }
             });
+        },
+        seeInput: function() {
+            this.flag = false;
+        },
+        btnCancelRegistro: function() {
+            this.flag = true;
         }
     }
 })

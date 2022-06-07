@@ -28,8 +28,7 @@
 
         <ul class="nav nav-pills">
             <li class="nav-item"><a href="../index.html" class="nav-link text-dark" aria-current="page">Inicio</a></li>
-            <li class="nav-item"><a href="../crear_orden/crear_orden.html" class="nav-link text-dark">Crear</a></li>
-            <li class="nav-item"><a href="#" class="nav-link active" id="active">Gestionar</a></li>
+            <li class="nav-item"><a href="#" class="nav-link text-dark">Gestionar</a></li>
             <li class="nav-item"><a href="../historial_orden/historial_orden.html"
                     class="nav-link text-dark">Completados</a></li>
         </ul>
@@ -37,7 +36,118 @@
 
     <div class="container" id="gestionOrder">
 
-        
+        <div v-show="flag">
+            <div class="table-responsive">
+
+                <table class="table table-hover caption-top">
+                    <caption>
+                        <h1 class="text-dark">Sistema de Gestión</h1>
+                    </caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">N°</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col">Información del Cliente</th>
+                            <th scope="col">Teléfono</th>
+                            <th scope="col">Prioridad</th>
+                            <th scope="col" colspan="2">Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(item, index) in order" :key="index">
+                            <th scope="row">{{index+1}}</th>
+                            <td>{{item.description}}</td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.tel}}</td>
+                            <td>{{item.priority}}</td>
+                            <td v-if="flag">Pendiente</td>
+                            <td v-else>Completado</td>
+                            <td>
+                                <button type="button" @click="" class="btn btn-success">Entregar</button>
+                                <button type="button" @click="cancelarOrden(index)"
+                                    class="btn btn-danger">Cancelar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div>
+                    <button type="button" class="btn btn-primary" @click="seeInput">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                            class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <div v-show="!flag">
+            <p class="lead">Agrega los detalles de la orden. Recuerda llenar los campos obligatorios para un registro
+                exitoso.</p>
+
+            <p class="h1">Orden #{{contador}}</p>
+
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label">Ingresa una breve descripción de la orden</label>
+                    <input type="text" class="form-control" placeholder="Descripción" v-model="inputDesc">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Nombre del cliente</label>
+                    <input type="text" class="form-control" placeholder="Nombres y apellidos" v-model="inputName">
+                </div>
+                <div class="col-6">
+                    <label class="form-label">Prioridad</label>
+                    <select class="form-select" v-model="inputPriority">
+                        <option v-for="element in prioridad">{{element}}</option>
+                    </select>
+                </div>
+                <div class="col-6">
+                    <label class="form-label">Teléfono del cliente</label>
+                    <input type="tel" class="form-control" placeholder="+57 Colombia" v-model="inputTel">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Tipo de pago</label>
+                    <select class="form-select" v-model="inputTypePay">
+                        <option v-for="type in tipoPago">{{type}}</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="inputZip" class="form-label">Dirección</label>
+                    <input type="text" class="form-control" placeholder="Kra, Calle, Av NN #NN - NN" v-model="inputDir">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Ciudad</label>
+                    <select class="form-select" v-model="inputCity">
+                        <option v-for="city in ciudades">{{city}}</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Adicional</label>
+                    <input type="text" class="form-control" placeholder="Apto, Residencia, Conjunto, Esquina, etc..."
+                        v-model="inputRef">
+                </div>
+                <div class="col-12">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" disabled>
+                        <label class="form-check-label">
+                            Generar alerta
+                        </label>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="d-grid gap-2 d-md-block">
+                        <button type="submit" class="btn btn-dark" @click="agregarOrden">Crear</button>
+                        <button type="submit" class="btn btn-danger" @click="btnCancelRegistro">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
 
         <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"
             style="bottom: 50px;">
