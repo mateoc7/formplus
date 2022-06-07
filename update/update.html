@@ -50,6 +50,7 @@
                             <th scope="col">Información del Cliente</th>
                             <th scope="col">Teléfono</th>
                             <th scope="col">Prioridad</th>
+                            <th scope="col">Total</th>
                             <th scope="col" colspan="2">Estado</th>
                         </tr>
                     </thead>
@@ -60,8 +61,8 @@
                             <td>{{item.name}}</td>
                             <td>{{item.tel}}</td>
                             <td>{{item.priority}}</td>
-                            <td v-if="flag">Pendiente</td>
-                            <td v-else>Completado</td>
+                            <td>{{item.amount}}</td>
+                            <td>Pendiente</td>
                             <td>
                                 <button type="button" @click="" class="btn btn-success">Entregar</button>
                                 <button type="button" @click="cancelarOrden(index)"
@@ -131,6 +132,14 @@
                     <label class="form-label">Adicional</label>
                     <input type="text" class="form-control" placeholder="Apto, Residencia, Conjunto, Esquina, etc..."
                         v-model="inputRef">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Total</label>
+                    <input type="text" class="form-control" placeholder="$9.999" v-model="inputAmount">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Total Generalizado</label>
+                    <input type="text" class="form-control" placeholder="$9.999" disabled>
                 </div>
                 <div class="col-12">
                     <div class="form-check">

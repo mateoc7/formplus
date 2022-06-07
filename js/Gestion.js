@@ -22,7 +22,9 @@ var app = new Vue({
                 if (this.prioridad.indexOf(this.inputPriority) != 0) {
                     if (this.inputTel && this.tipoPago.indexOf(this.inputTypePay) != 0) {
                         if (this.inputDir && this.ciudades.indexOf(this.inputCity) != 0) {
-                            return true;
+                            if(this.inputAmount) {
+                                return true;
+                            }
                         }
                     }
                 }
@@ -49,7 +51,8 @@ var app = new Vue({
                     typePay: this.inputTypePay,
                     direction: this.inputDir,
                     city: this.inputCity,
-                    ref: this.inputRef
+                    ref: this.inputRef,
+                    amount: this.inputAmount
                 });
                 this.clearFields();
                 Swal.fire({
