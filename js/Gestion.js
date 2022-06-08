@@ -1,6 +1,9 @@
 var app = new Vue({
     el: "#gestionOrder",
     data: {
+        navIndex: false,
+        navGestion: false,
+        navHistorial: false,
         flag: true,
         contador: 1,
         inputDesc: "",
