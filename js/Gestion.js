@@ -1,7 +1,7 @@
 var app = new Vue({
     el: "#gestionOrder",
     data: {
-        navIndex: false,
+        navIndex: true,
         navGestion: false,
         navHistorial: false,
         flag: true,
@@ -16,9 +16,34 @@ var app = new Vue({
         inputRef: "",
         inputAmount: null,
         order: [],
-        prioridad: ["Seleccione una", "Alta", "Media", "Baja"],
-        tipoPago: ["Seleccione uno", "Contraentregra", "Tarjeta de Crédito", "PSE"],
-        ciudades: ["Seleccione una", "Armenia", "Bogotá", "Bucaramanga", "Barranquilla", "Bello", "Cúcuta", "Cali", "Cartagena", "Manizales", "Medellín", "Ocaña", "Pereira", "Santa Marta"]
+        prioridad: [
+            "Seleccione una",
+            "Alta",
+            "Media",
+            "Baja"
+        ],
+        tipoPago: [
+            "Seleccione uno",
+            "Contraentregra",
+            "Tarjeta de Crédito",
+            "PSE"
+        ],
+        ciudades: [
+            "Seleccione una",
+            "Armenia",
+            "Bogotá",
+            "Bucaramanga",
+            "Barranquilla",
+            "Bello",
+            "Cúcuta",
+            "Cali",
+            "Cartagena",
+            "Manizales",
+            "Medellín",
+            "Ocaña",
+            "Pereira",
+            "Santa Marta"
+        ]
     },
     methods: {
         validateFields: function () {
@@ -26,7 +51,7 @@ var app = new Vue({
                 if (this.prioridad.indexOf(this.inputPriority) != 0) {
                     if (this.inputTel && this.tipoPago.indexOf(this.inputTypePay) != 0) {
                         if (this.inputDir && this.ciudades.indexOf(this.inputCity) != 0) {
-                            if(this.inputAmount) {
+                            if (this.inputAmount) {
                                 return true;
                             }
                         }
@@ -100,10 +125,10 @@ var app = new Vue({
                 }
             });
         },
-        seeInput: function() {
+        seeInput: function () {
             this.flag = false;
         },
-        btnCancelRegistro: function() {
+        btnCancelRegistro: function () {
             if (this.validateFields()) {
                 Swal.fire({
                     title: '¿Estás seguro?',
@@ -125,9 +150,29 @@ var app = new Vue({
                         this.clearFields();
                     }
                 });
-                
+
             } else {
                 this.flag = true;
+            }
+        },
+        showInfo: function (type) {
+            if (type == 1) {
+                this.navIndex = true;
+                this.navGestion = false;
+                this.navHistorial = false;
+                console.log("index");
+            } else if (type == 2) {
+                this.navIndex = false;
+                this.navGestion = true;
+                this.navHistorial = false;
+                console.log("gestion");
+            } else if (type == 3) {
+                this.navIndex = false;
+                this.navGestion = false;
+                this.navHistorial = true;
+                console.log("historial");
+            } else {
+                console.log("Parametro no identificado!!!");
             }
         }
     }

@@ -31,20 +31,20 @@
             <div>
                 <ul class="nav nav-pills nav-fill">
                     <li class="nav-item">
-                        <a class="nav-link text-dark" v-bind:class="{active: navIndex}" href="#">Inicio</a>
+                        <a class="nav-link text-dark" v-bind:class="{active: navIndex}" @click="showInfo(1)" href="#">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" v-bind:class="{active: navGestion}" href="update/update.html">Gestionar</a>
+                        <a class="nav-link text-dark" v-bind:class="{active: navGestion}" @click="showInfo(2)" href="#">Gestionar</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" v-bind:class="{active: navHistorial}" href="update/update.html">Completados</a>
+                        <a class="nav-link text-dark" v-bind:class="{active: navHistorial}" @click="showInfo(3)" href="#">Completados</a>
                     </li>
                 </ul>
             </div>
         </header>
 
         <!-- Container index -->
-        <div>
+        <div v-show="navIndex">
             <div class="row flex-lg-row-reverse align-items-center">
                 <div class="col-10 col-sm-8 col-lg-6" id="img_index">
                     <img src="img/form_index.svg" class="d-block mx-lg-auto img-fluid" id="src_img" alt="FormPlus" width="570"
@@ -84,7 +84,7 @@
         </div>
 
         <!-- Container gestion -->
-        <div>
+        <div v-show="navGestion">
             <div class="table-responsive">
         
                 <table class="table table-hover caption-top">
@@ -134,7 +134,7 @@
         </div>
 
         <!-- Container historial -->
-        <div>
+        <div v-show="navHistorial">
             <div class="table-responsive">
                 <table class="table caption-top">
                     <caption>
