@@ -43,7 +43,11 @@ var app = new Vue({
             "Ocaña",
             "Pereira",
             "Santa Marta"
-        ]
+        ],
+        actived: {
+            background: "black",
+            color: "white"
+        }
     },
     methods: {
         validateFields: function () {

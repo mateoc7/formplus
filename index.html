@@ -31,13 +31,16 @@
             <div>
                 <ul class="nav nav-pills nav-fill">
                     <li class="nav-item">
-                        <a class="nav-link text-dark" v-bind:class="{active: navIndex}" @click="showInfo(1)" href="#">Inicio</a>
+                        <a class="nav-link" v-bind:class="{active: navIndex}" v-bind:style="navIndex ? actived : ''"
+                            @click="showInfo(1)" href="#">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" v-bind:class="{active: navGestion}" @click="showInfo(2)" href="#">Gestionar</a>
+                        <a class="nav-link" v-bind:class="{active: navGestion}" v-bind:style="navGestion ? actived : ''"
+                            @click="showInfo(2)" href="#">Gestionar</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" v-bind:class="{active: navHistorial}" @click="showInfo(3)" href="#">Completados</a>
+                        <a class="nav-link" v-bind:class="{active: navHistorial}"
+                            v-bind:style="navHistorial ? actived : ''" @click="showInfo(3)" href="#">Completados</a>
                     </li>
                 </ul>
             </div>
@@ -47,8 +50,8 @@
         <div v-show="navIndex">
             <div class="row flex-lg-row-reverse align-items-center">
                 <div class="col-10 col-sm-8 col-lg-6" id="img_index">
-                    <img src="img/form_index.svg" class="d-block mx-lg-auto img-fluid" id="src_img" alt="FormPlus" width="570"
-                        height="370">
+                    <img src="img/form_index.svg" class="d-block mx-lg-auto img-fluid" id="src_img" alt="FormPlus"
+                        width="570" height="370">
                 </div>
                 <div class="col-lg-6">
                     <div>
@@ -57,7 +60,8 @@
                             Crea, organiza y gestiona tus propias ordenes de pedidos. Tendrás las opciones de gestionar
                             entre
                             entregado, esperando
-                            y cancelado; organizar un historial de las gestiones y crear las ordenes con todos los detalles
+                            y cancelado; organizar un historial de las gestiones y crear las ordenes con todos los
+                            detalles
                             necesarios.
                         </p>
                     </div>
@@ -73,7 +77,8 @@
                     <div>
                         <p class="h1">Inicia sesión</p>
                         <p class="lead">
-                            Antes de iniciar sesión, asegúrate que el proveedor haya completado tu registro y puedas empezar
+                            Antes de iniciar sesión, asegúrate que el proveedor haya completado tu registro y puedas
+                            empezar
                             a disfrutar
                             de la mejor experiencia en tu negocio.
                         </p>
@@ -86,7 +91,7 @@
         <!-- Container gestion -->
         <div v-show="navGestion">
             <div class="table-responsive">
-        
+
                 <table class="table table-hover caption-top">
                     <caption>
                         <h1 class="text-dark">Sistema de Gestión</h1>
@@ -113,7 +118,8 @@
                             <td>Pendiente</td>
                             <td>
                                 <button type="button" @click="" class="btn btn-success">Entregar</button>
-                                <button type="button" @click="cancelarOrden(index)" class="btn btn-danger">Cancelar</button>
+                                <button type="button" @click="cancelarOrden(index)"
+                                    class="btn btn-danger">Cancelar</button>
                             </td>
                         </tr>
                     </tbody>
@@ -129,6 +135,78 @@
                         </svg>
                         Agregar orden
                     </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Container agregar orden -->
+        <div v-show="!flag">
+            <p class="lead">Agrega los detalles de la orden. Recuerda llenar los campos obligatorios para un registro
+                exitoso.</p>
+
+            <p class="h1">Orden #{{contador}}</p>
+
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label">Ingresa una breve descripción de la orden</label>
+                    <input type="text" class="form-control" placeholder="Descripción" v-model="inputDesc">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Nombre del cliente</label>
+                    <input type="text" class="form-control" placeholder="Nombres y apellidos" v-model="inputName">
+                </div>
+                <div class="col-6">
+                    <label class="form-label">Prioridad</label>
+                    <select class="form-select" v-model="inputPriority">
+                        <option v-for="element in prioridad">{{element}}</option>
+                    </select>
+                </div>
+                <div class="col-6">
+                    <label class="form-label">Teléfono del cliente</label>
+                    <input type="tel" class="form-control" placeholder="+57 Colombia" v-model="inputTel">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Tipo de pago</label>
+                    <select class="form-select" v-model="inputTypePay">
+                        <option v-for="type in tipoPago">{{type}}</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="inputZip" class="form-label">Dirección</label>
+                    <input type="text" class="form-control" placeholder="Kra, Calle, Av NN #NN - NN" v-model="inputDir">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Ciudad</label>
+                    <select class="form-select" v-model="inputCity">
+                        <option v-for="city in ciudades">{{city}}</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Adicional</label>
+                    <input type="text" class="form-control" placeholder="Apto, Residencia, Conjunto, Esquina, etc..."
+                        v-model="inputRef">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Total</label>
+                    <input type="text" class="form-control" placeholder="$9.999" v-model="inputAmount">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Total Generalizado</label>
+                    <input type="text" class="form-control" placeholder="$9.999" disabled>
+                </div>
+                <div class="col-12">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" disabled>
+                        <label class="form-check-label">
+                            Generar alerta
+                        </label>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="d-grid gap-2 d-md-block">
+                        <button type="submit" class="btn btn-dark" @click="agregarOrden">Crear</button>
+                        <button type="submit" class="btn btn-danger" @click="btnCancelRegistro">Cancelar</button>
+                    </div>
                 </div>
             </div>
         </div>
