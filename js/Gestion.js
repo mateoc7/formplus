@@ -11,6 +11,7 @@ var app = new Vue({
         inputDir: "",
         inputCity: "Seleccione una",
         inputRef: "",
+        inputAmount: null,
         order: [],
         prioridad: ["Seleccione una", "Alta", "Media", "Baja"],
         tipoPago: ["Seleccione uno", "Contraentregra", "Tarjeta de Crédito", "PSE"],
@@ -40,6 +41,7 @@ var app = new Vue({
             this.inputDir = "";
             this.inputCity = "Seleccione una";
             this.inputRef = "";
+            this.inputAmount = "";
         },
         agregarOrden: function () {
             if (this.validateFields()) {
