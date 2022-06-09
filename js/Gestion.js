@@ -47,6 +47,9 @@ var app = new Vue({
         actived: {
             background: "black",
             color: "white"
+        },
+        normal: {
+            color: "black"
         }
     },
     methods: {

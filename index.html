@@ -31,16 +31,16 @@
             <div>
                 <ul class="nav nav-pills nav-fill">
                     <li class="nav-item">
-                        <a class="nav-link" v-bind:class="{active: navIndex}" v-bind:style="navIndex ? actived : ''"
+                        <a class="nav-link" v-bind:class="{active: navIndex}" v-bind:style="navIndex ? actived : normal"
                             @click="showInfo(1)" href="#">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" v-bind:class="{active: navGestion}" v-bind:style="navGestion ? actived : ''"
+                        <a class="nav-link" v-bind:class="{active: navGestion}" v-bind:style="navGestion ? actived : normal"
                             @click="showInfo(2)" href="#">Gestionar</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" v-bind:class="{active: navHistorial}"
-                            v-bind:style="navHistorial ? actived : ''" @click="showInfo(3)" href="#">Completados</a>
+                            v-bind:style="navHistorial ? actived : normal" @click="showInfo(3)" href="#">Completados</a>
                     </li>
                 </ul>
             </div>
