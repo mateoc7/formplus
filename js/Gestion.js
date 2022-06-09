@@ -15,6 +15,7 @@ var app = new Vue({
         inputCity: "Seleccione una",
         inputRef: "",
         order: [],
+        ordenEntregada: [],
         prioridad: [
             "Seleccione una",
             "Alta",
@@ -166,20 +167,52 @@ var app = new Vue({
                 this.navIndex = true;
                 this.navGestion = false;
                 this.navHistorial = false;
-                console.log("index");
             } else if (type == 2) {
                 this.navIndex = false;
                 this.navGestion = true;
                 this.navHistorial = false;
-                console.log("gestion");
             } else if (type == 3) {
                 this.navIndex = false;
                 this.navGestion = false;
                 this.navHistorial = true;
-                console.log("historial");
             } else {
                 console.log("Parametro no identificado!!!");
             }
+        },
+        addOrdenEntregada: function(i) {
+            this.ordenEntregada.push({
+                desc: this.order[i].description,
+                infoClient: this.order[i].name,
+                price: "$9.999"
+            });
+        },
+        entregarOrden: function(i) {
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "¡No podrás revertir esto!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '¡Sí, entregar!',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Genial!',
+                        'La orden se entregó exitosamente.',
+                        'success'
+                    )
+                    this.addOrdenEntregada(i);
+                    this.order.splice(i, 1);
+                } else {
+                    Swal.fire(
+                        'Cancelado!',
+                        'La orden no se entregó.',
+                        'warning'
+                    )
+                }
+            });
         }
     }
 })

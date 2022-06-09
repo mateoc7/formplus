@@ -103,7 +103,6 @@
                             <th scope="col">Información del Cliente</th>
                             <th scope="col">Teléfono</th>
                             <th scope="col">Prioridad</th>
-                            <th scope="col">Total</th>
                             <th scope="col" colspan="2">Estado</th>
                         </tr>
                     </thead>
@@ -114,10 +113,9 @@
                             <td>{{item.name}}</td>
                             <td>{{item.tel}}</td>
                             <td>{{item.priority}}</td>
-                            <td>{{item.amount}}</td>
                             <td>Pendiente</td>
                             <td>
-                                <button type="button" @click="" class="btn btn-success">Entregar</button>
+                                <button type="button" @click="entregarOrden(index)" class="btn btn-success">Entregar</button>
                                 <button type="button" @click="cancelarOrden(index)"
                                     class="btn btn-danger">Cancelar</button>
                             </td>
@@ -219,29 +217,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>1 Bebida fría de café 250ml</td>
-                            <td>Otto B</td>
-                            <td>$ 9.999</td>
+                        <tr v-for="(data, id) in ordenEntregada" :key="id">
+                            <td scope="row">{{id+1}}</td>
+                            <td>{{data.desc}}</td>
+                            <td>{{data.infoClient}}</td>
+                            <td>{{data.price}}</td>
                         </tr>
                         <tr>
-                            <th scope="row">2</th>
-                            <td>2 Cervezas Corona 750ml</td>
-                            <td>Mary L</td>
-                            <td>$ 7.779</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>5 Cervezas Corona 150ml</td>
-                            <td>Juan H</td>
-                            <td>$ 15.799</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">4</th>
-                            <td>1 Maní OneTwo 20gr</td>
-                            <td>Johan T</td>
-                            <td>$ 1.099</td>
+                            <div class="alert alert-warning" role="alert" v-if="ordenEntregada.length == 0">
+                               No se han entregado ordenes.
+                            </div>
                         </tr>
                     </tbody>
                 </table>
