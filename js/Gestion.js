@@ -100,6 +100,7 @@ var app = new Vue({
                     timer: 1500
                 });
                 this.contador++;
+                this.navGestion = true;
                 this.flag = true;
             } else {
                 Swal.fire({
@@ -134,6 +135,7 @@ var app = new Vue({
         },
         seeInput: function () {
             this.flag = false;
+            this.navGestion = false;
         },
         btnCancelRegistro: function () {
             if (this.validateFields()) {
@@ -154,12 +156,14 @@ var app = new Vue({
                             'success'
                         )
                         this.flag = true;
+                        this.navGestion = true;
                         this.clearFields();
                     }
                 });
 
             } else {
                 this.flag = true;
+                this.navGestion = true;
             }
         },
         showInfo: function (type) {
