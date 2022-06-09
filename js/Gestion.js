@@ -14,7 +14,6 @@ var app = new Vue({
         inputDir: "",
         inputCity: "Seleccione una",
         inputRef: "",
-        inputAmount: null,
         order: [],
         prioridad: [
             "Seleccione una",
@@ -58,9 +57,7 @@ var app = new Vue({
                 if (this.prioridad.indexOf(this.inputPriority) != 0) {
                     if (this.inputTel && this.tipoPago.indexOf(this.inputTypePay) != 0) {
                         if (this.inputDir && this.ciudades.indexOf(this.inputCity) != 0) {
-                            if (this.inputAmount) {
-                                return true;
-                            }
+                            return true;
                         }
                     }
                 }
@@ -76,7 +73,6 @@ var app = new Vue({
             this.inputDir = "";
             this.inputCity = "Seleccione una";
             this.inputRef = "";
-            this.inputAmount = "";
         },
         agregarOrden: function () {
             if (this.validateFields()) {
@@ -88,8 +84,7 @@ var app = new Vue({
                     typePay: this.inputTypePay,
                     direction: this.inputDir,
                     city: this.inputCity,
-                    ref: this.inputRef,
-                    amount: this.inputAmount
+                    ref: this.inputRef
                 });
                 this.clearFields();
                 Swal.fire({
