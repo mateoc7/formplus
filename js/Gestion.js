@@ -160,6 +160,7 @@ var app = new Vue({
             } else {
                 this.flag = true;
                 this.navGestion = true;
+                this.clearFields();
             }
         },
         showInfo: function (type) {

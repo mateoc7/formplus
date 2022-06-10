@@ -116,9 +116,15 @@
                             <td>Pendiente</td>
                             <td>
                                 <button type="button" @click="entregarOrden(index)" class="btn btn-success">Entregar</button>
+                                <button type="button" @click="" class="btn btn-warning">Editar</button>
                                 <button type="button" @click="cancelarOrden(index)"
                                     class="btn btn-danger">Cancelar</button>
                             </td>
+                        </tr>
+                        <tr>
+                            <div class="alert alert-warning" role="alert" v-if="order.length == 0">
+                               No hay registro de ordenes.
+                            </div>
                         </tr>
                     </tbody>
                 </table>
